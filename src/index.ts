@@ -240,13 +240,35 @@ function higherOrderExample() {
     console.log('7b) Or assume we want to group the dishes by vegetarian, non vegetarian. The result is', grouped);
 }
 
+// This is an arrow function :-)
+const logNyanHeadline = (text: string) => console.log('\x1b[36m%s\x1b[0m', `\n## ${text}\n`);
+
+logNyanHeadline('Difference between let and const');
 letConstDifference();
+
+logNyanHeadline('Implicit vs. explicit typing');
 implicitVsExplicitTyping();
+
+logNyanHeadline('Typing for objects');
 objectTyping();
+
+logNyanHeadline('Generating objects using classes');
 objectFromClass();
+
+logNyanHeadline('Structural typing');
 structuralTyping();
+
+logNyanHeadline('Type unions');
 typeUnion();
+
+logNyanHeadline('Type intersections');
 typeIntersections();
+
+logNyanHeadline('Optional attributes');
 optionalAttributes();
+
+logNyanHeadline('Optional params');
 optionalParams();
+
+logNyanHeadline('Higher-order functions');
 higherOrderExample();
