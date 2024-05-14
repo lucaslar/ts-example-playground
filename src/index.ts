@@ -16,18 +16,6 @@ function implicitVsExplicitTyping() {
     // implicitlyTyped = 'some string';
 }
 
-function interfaceExample() {
-    const vegetarian = true;
-    const pizza: Pizza = { name: 'Margarita', diameter: 24, vegetarian };
-    console.log('Successfully created a pizza:', pizza);
-    const { diameter } = pizza;
-    console.log("We just extracted the diameter of the pizza (using a nice JS syntax)! It's:", diameter);
-}
-
-function classAndObjectExample() {
-    // Lecture
-}
+// Lecture starts here ...
 
 implicitVsExplicitTyping();
-interfaceExample();
-classAndObjectExample();
