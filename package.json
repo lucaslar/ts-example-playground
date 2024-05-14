@@ -1,0 +1,24 @@
+{
+    "name": "ts-example-playground",
+    "version": "1.0.0",
+    "description": "Example repository for TypeScript and advanced JavaScript concepts",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon src/index.ts",
+        "start:js-playground": "nodemon src/js-playground.js",
+        "start:ts-playground": "nodemon src/ts-playground.ts"
+    },
+    "author": "Lucas Larisch",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^3.1.0",
+        "prettier": "^3.2.5",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
+    },
+    "prettier": {
+        "printWidth": 120,
+        "singleQuote": true,
+        "tabWidth": 4
+    }
+}
