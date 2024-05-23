@@ -74,7 +74,7 @@ function objectFromClass(): void {
     console.log('What would it look like to read/change the values of public attributes? Test it yourself');
 }
 
-function structuralTyping() {
+function structuralTyping(): void {
     console.log('Types are compatible based on their structure in TypeScript, i.e., based on their properties');
     console.log('How are types compared in Java? (hint: differently, structural typing is most likely new to you)');
 
@@ -114,7 +114,7 @@ function structuralTyping() {
     );
 }
 
-function typeUnion() {
+function typeUnion(): void {
     console.log(
         "In TypeScript, we can also create type unions, for example, let's just use `Dish` from the previous example as our basis",
     );
@@ -132,7 +132,7 @@ function typeUnion() {
     const pizza: Pizza = { name: 'Primavera', vegetarian: true, diameter: 26 };
 }
 
-function typeIntersections() {
+function typeIntersections(): void {
     console.log('We just defined a type using intersection. Variables of this type can be a boolean or a number');
     type CouldBeBoolOrNr = boolean | number;
     console.log("Ha! Even better, let's restrict the numbers to one and zero. This is possible in TypeScript as well");
@@ -164,7 +164,7 @@ function optionalAttributes() {
     console.log(pizza);
 }
 
-function optionalParams() {
+function optionalParams(): void {
     function example(a: number, b?: number, c?: number) {}
 
     console.log('We just defined a function accepting optional params');
@@ -180,7 +180,7 @@ function optionalParams() {
     // example(1, 2, 3, 4);
 }
 
-function higherOrderExample() {
+function higherOrderFunctions(): void {
     console.log(
         "Let's skip the somehow theoretical introduction of arrow functions and jump to higher-order functions directly! Check out the slides for more information",
     );
@@ -240,6 +240,164 @@ function higherOrderExample() {
     console.log('7b) Or assume we want to group the dishes by vegetarian, non vegetarian. The result is', grouped);
 }
 
+function settingAndAccessingProperties(): void {
+    const property5 = 'E';
+    const thisWillBeUsedAsKey = 'property4';
+    const someObject = {
+        property1: 'A',
+        2: 'B',
+        'property 3': 'C',
+        [thisWillBeUsedAsKey]: 'D',
+        property5,
+    };
+
+    console.log('We just created an object:', someObject);
+    console.log('... check out the code to see how key/value have been set in 5 different ways!');
+    console.log(
+        '... similarly, here are some examples of how to access values (you might also need to check out the code):',
+        someObject.property1,
+        someObject[2],
+        someObject['property 3'],
+        someObject[thisWillBeUsedAsKey],
+        someObject.property5,
+    );
+}
+
+function arrayMergeWithSpread() {
+    const arr1 = [1, 2, 3];
+    const arr2 = [4, 5, 6];
+    const merged = [...arr1, ...arr2];
+    console.log('We have merged the following two arrays:', arr1, '&', arr2);
+    console.log('... to this:', merged, '(check out the code to check out how easy it is using the spread operator!)');
+}
+
+function extractVariablesWithSpread() {
+    const pizza = { name: 'Pizza Margherita', price: 12.5, vegetarian: true };
+    const { name, ...pizzaWithoutName } = pizza;
+
+    console.log('We have one object:', pizza);
+    console.log('... and just extracted the name (', name, '); rest of the object is:', pizzaWithoutName);
+    console.log('Again, we used the spread operator, check it out!');
+}
+
+function restOperator() {
+    console.log(
+        'We can also use the three dots in front of a function parameter in order to let it accept 0-n values. Check out how the following two three occurred:',
+    );
+
+    function greet(greeting: string, ...names: string[]): void {
+        console.log(greeting + ' ' + names.join(', '));
+    }
+
+    greet('Hello there!');
+    greet('Hi', 'Mary');
+    greet('Hello', 'Mary', 'Markus');
+}
+
+function optionalChainin() {
+    const data = [
+        { name: 'Max', address: { city: { name: 'Berlin', zip: '10318' } } },
+        { name: 'Moritz', address: undefined },
+        { name: 'Marie', address: { city: { name: 'Berlin', zip: '10318' } } },
+        { name: 'Mona', address: { city: { name: 'Berlin', zip: '10178' } } },
+        { name: 'Markus', address: { city: { name: 'Rostock' } } },
+    ];
+
+    console.log('We have the following data and want to extract all zip codes (using map):');
+    data.forEach((d) => console.log(d));
+
+    const zips = data.map((d) => d.address?.city.zip);
+    console.log('\nWhich differences do you notice? How could we safely access the zips? lots of if/else?');
+    console.log(
+        'No! We can use Optional Chaining! Check out how we collected these zips. What would have happened, if we had not used optional chaining?',
+    );
+    console.log('Zips:', zips);
+}
+
+function nullishCoalescing() {
+    console.log(
+        "Let's consider the zip example above again. It was pretty cool, but instead of undefined, we would like to provide a default value",
+    );
+
+    const data = [
+        { name: 'Max', address: { city: { name: 'Berlin', zip: '10318' } } },
+        { name: 'Moritz', address: undefined },
+        { name: 'Marie', address: { city: { name: 'Berlin', zip: '10318' } } },
+        { name: 'Mona', address: { city: { name: 'Berlin', zip: '10178' } } },
+        { name: 'Markus', address: { city: { name: 'Rostock' } } },
+    ];
+
+    const zipsWithDefault = data.map((d) => d.address?.city.zip ?? 'XXXXX');
+    console.log('To this end, we used Nullish Coalescing and provided "XXXXX":', zipsWithDefault);
+    console.log(
+        '(BONUS) By the way, we could also make sure to have every value exactly once using a Set and re-converting to array:',
+        [...new Set(zipsWithDefault)],
+    );
+}
+
+function truthyAndFalsy() {
+    console.log("In JavaScript, we don't simply have true and false, but truthy and falsy values.");
+    console.log(
+        'true and false are booleans as known from Java. But truthy and falsy values are often much easier, e. g. in an "if"',
+    );
+    console.log(
+        'The following function will log whether a value is truthy or falsy, check out what its if-statement looks like',
+    );
+
+    function logTruthyOrFalsy(p: any) {
+        if (p) console.log('-', p, 'is truthy!');
+        else console.log('-', p, 'is falsy!');
+    }
+
+    [
+        'someString',
+        '(the next param is an empty string)',
+        '',
+        -1,
+        0,
+        1,
+        389829131283,
+        -389829131283,
+        undefined,
+        null,
+        { some: 'object' },
+        {},
+        true,
+        false,
+    ].forEach(logTruthyOrFalsy);
+
+    const data = [
+        { name: 'Max', friends: ['Moritz'] },
+        { name: 'Moritz', friends: ['Max', 'Marie'] },
+        { name: 'Marie', friends: ['Moritz', 'Mona'] },
+        { name: 'Mona', friends: ['Marie'] },
+        { name: 'Markus', friends: [] },
+    ];
+    console.log('\nWe can also use this in a filter condition. For example consider the following data:', data);
+    console.log("Let's only see people who have friends using a number in the filter condition instead of a boolean!");
+
+    const peopleWithFriendsOnly = data.filter((d) => d.friends.length);
+    console.log('That would be:', peopleWithFriendsOnly);
+
+    console.log(
+        '\nFinally, we can also negate truthy/falsy values and will have a boolean. For example, check out how these values were created:',
+        !0,
+        !123,
+        !'',
+        !'some string',
+        !null,
+    );
+
+    console.log(
+        'Or, conversely negated twice, which will practically convert any value to a boolean saying whether its truthy or falsy. Hava a look at how these values were created, too:',
+        !!0,
+        !!123,
+        !!'',
+        !!'some string',
+        !!null,
+    );
+}
+
 // This is an arrow function :-)
 const logNyanHeadline = (text: string) => console.log('\x1b[36m%s\x1b[0m', `\n## ${text}\n`);
 
@@ -271,4 +429,25 @@ logNyanHeadline('Optional params');
 optionalParams();
 
 logNyanHeadline('Higher-order functions');
-higherOrderExample();
+higherOrderFunctions();
+
+logNyanHeadline('Setting and accessing object properties');
+settingAndAccessingProperties();
+
+logNyanHeadline('Things to do with "..." (Spread): Merge Arrays');
+arrayMergeWithSpread();
+
+logNyanHeadline('Things to do with "..." (Spread): Extract variables from object');
+extractVariablesWithSpread();
+
+logNyanHeadline('Things to do with "...": Rest');
+restOperator();
+
+logNyanHeadline('Optional chaining');
+optionalChainin();
+
+logNyanHeadline('Nullish Coalescing');
+nullishCoalescing();
+
+logNyanHeadline('Truthy and falsy');
+truthyAndFalsy();
