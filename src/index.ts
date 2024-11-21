@@ -1,5 +1,4 @@
 import { Bakery } from './model/bakery';
-import * as trace_events from 'node:trace_events';
 
 console.log('### TypeScript Demo ###');
 
